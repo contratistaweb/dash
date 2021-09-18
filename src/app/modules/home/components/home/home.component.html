@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<app-slider></app-slider>
+<!-- <div *ngFor="let us of data">
+    <p>{{us.email}}</p>
+    <p>{{us.username}}</p>
+    <p>{{us.psw}}</p>
+</div> -->
+<!-- <ng-container *ngFor="let photo of photos">
+    <img [src]="photo.urls.small" [alt]="photo.alt_description">
+</ng-container> -->
+<div class="row d-flex justify-content-around">
+    <ng-container *ngFor="let photo of photos">
+        <mat-card class="example-card col-3 mx-1 my-2">
+            <img mat-card-image [src]="photo.urls.small" [alt]="photo.alt_description">
+            <mat-card-header>
+                <mat-card-title>{{photo.alt_description |titlecase}}</mat-card-title>
+                <mat-card-subtitle>likes: {{photo.likes}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions>
+                <div class="d-flex justify-content-between">
+                    <button mat-button>LIKE</button>
+                    <button mat-button>SHARE</button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </ng-container>
+</div>
+
+
+
+<app-footer></app-footer>

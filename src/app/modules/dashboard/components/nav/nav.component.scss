@@ -1,0 +1,30 @@
+mat-sidenav-content {
+  background-color:rgba(0, 0, 256, 0.0);
+  display: block;
+}
+
+mat-sidenav-content, .sidenav{
+  background-color:rgba(0, 0, 256, 0.2);
+}
+// {
+//   background-color:rgba(0, 0, 256, 0.2);
+// }
+
+.sidenav-container  {
+  height: 100%;
+}
+
+.sidenav{
+  width: 150px;
+  color:white
+}
+
+mat-toolbar, app-dashboard, .toolbar{
+  background-color:rgba(0, 0, 256, 0.0);
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
