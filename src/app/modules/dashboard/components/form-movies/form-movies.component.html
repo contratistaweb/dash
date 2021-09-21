@@ -1,0 +1,103 @@
+<div class="container grid-container">
+    <div class="row d-flex justify-content-center p-5   ">
+        <mat-card class="form-card mx-auto my-auto col col-md-4">
+            <mat-card-content class="form-card-content" *ngIf="movie!=undefined">
+
+                <form #formMovie="ngForm" (ngSubmit)="onSubmit(formMovie)">
+                    <!-- input hidden -->
+                    <!-- <input type="hidden" [(ngModel)]="indexMov" #indexMov="ngModel" id="indexMov" name="indexMov"> -->
+                    <input type="hidden" [(ngModel)]="movie.likes" #likes="ngModel" id="likes" name="likes">
+
+                    <!-- input  -->
+                    <div class="form-group mb-3">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">
+                                <mat-icon class="material-icons md-24" color="primary" id="search-icon">search
+                                </mat-icon>
+                            </span>
+                            <input type="text" class="form-control" aria-describedby="search-icon" name="nombre"
+                                [(ngModel)]="movie.nombre" required #nombre="ngModel" id="nombre"
+                                placeholder="movie name">
+                        </div>
+                    </div>
+                    <!-- input  -->
+                    <div class="form-group mb-3">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">
+                                <mat-icon class="material-icons md-24" color="primary" id="search-icon">search
+                                </mat-icon>
+                            </span>
+
+                            <select class="form-control" aria-describedby="search-icon" name="cartelera"
+                                [(ngModel)]="movie.cartelera" required #cartelera="ngModel" id="cartelera">
+                                <option value="true" selected="true">Disponible en cartelera</option>
+                                <option value="false">Estreno</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- input  -->
+                    <div class="form-group mb-3">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">
+                                <mat-icon class="material-icons md-24" color="primary" id="search-icon">search
+                                </mat-icon>
+                            </span>
+                            <select class="form-control" aria-describedby="search-icon" name="idioma"
+                                [(ngModel)]="movie.idioma" required #idioma="ngModel" id="idioma">
+                                <option value="Español" selected="true">Español</option>
+                                <option value="Ingles">Ingles</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- input  -->
+                    <div class="form-group mb-3">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">
+                                <mat-icon class="material-icons md-24" color="primary" id="search-icon">search
+                                </mat-icon>
+                            </span>
+                            <input type="text" class="form-control" aria-describedby="search-icon" name="imagen"
+                                [(ngModel)]="movie.imagen" required #imagen="ngModel" id="imagen"
+                                placeholder="movie url image">
+                        </div>
+                    </div>
+
+                    <!-- input  -->
+                    <div class="form-group mb-3">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">
+                                <mat-icon class="material-icons md-24" color="primary" id="search-icon">search
+                                </mat-icon>
+                            </span>
+                            <input type="text" class="form-control" aria-describedby="search-icon" name="trailer"
+                                [(ngModel)]="movie.trailer" required #trailer="ngModel" id="trailer"
+                                placeholder="movie url trailer">
+                        </div>
+                    </div>
+
+                    <!-- input  -->
+                    <div class="form-group mb-3">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text" id="addon-wrapping">
+                                <mat-icon class="material-icons md-24" color="primary" id="search-icon">search
+                                </mat-icon>
+                            </span>
+                            <textarea class="form-control" aria-describedby="search-icon" name="descripcion"
+                                [(ngModel)]="movie.descripcion" required #descripcion="ngModel" id="descripcion"
+                                placeholder="movie description" rows="12"></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" name="send" id="send"
+                            class="btn btn-primary btn-lg btn-block">{{action|titlecase}}</button>
+                    </div>
+                </form>
+
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

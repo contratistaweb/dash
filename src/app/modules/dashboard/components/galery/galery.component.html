@@ -1,0 +1,16 @@
+<div class="grid-container">
+    <mat-grid-list cols="3" rowHeight="3:2" gutterSize="20px">
+        <mat-grid-tile *ngFor="let card of photos" [colspan]="(cards|async)?3:1" [rowspan]="(cards|async)?1:1">
+            <mat-card class="dashboard-card">
+                <div class="container">
+                    <div class="row">
+                        <div class="middle">
+                            <div class="text">{{card.nombre}}</div>
+                        </div>
+                        <img mat-card [src]="card.imagen" [alt]="card.nombre" class="image">
+                    </div>
+                </div>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

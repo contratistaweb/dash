@@ -1,20 +1,12 @@
 <app-navbar></app-navbar>
 <app-slider></app-slider>
-<!-- <div *ngFor="let us of data">
-    <p>{{us.email}}</p>
-    <p>{{us.username}}</p>
-    <p>{{us.psw}}</p>
-</div> -->
-<!-- <ng-container *ngFor="let photo of photos">
-    <img [src]="photo.urls.small" [alt]="photo.alt_description">
-</ng-container> -->
 <div class="row d-flex justify-content-around">
-    <ng-container *ngFor="let photo of photos">
+    <ng-container *ngFor="let movie of movies">
         <mat-card class="example-card col-3 mx-1 my-2">
-            <img mat-card-image [src]="photo.urls.small" [alt]="photo.alt_description">
+            <img mat-card-image [src]="movie.imagen" [alt]="movie.nombre">
             <mat-card-header>
-                <mat-card-title>{{photo.alt_description |titlecase}}</mat-card-title>
-                <mat-card-subtitle>likes: {{photo.likes}}</mat-card-subtitle>
+                <mat-card-title>{{movie.nombre |titlecase}}</mat-card-title>
+                <mat-card-subtitle>likes: {{movie.likes}}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-actions>
                 <div class="d-flex justify-content-between">

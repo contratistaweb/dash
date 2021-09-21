@@ -1,3 +1,5 @@
-.carousel-item{
-    max-height: 480px;
-}
+
+.carousel {
+    perspective: 480px !important;
+    height: 480px;
+  }

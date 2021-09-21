@@ -1,24 +1,73 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+  <mat-grid-list cols="2" rowHeight="200px">
+    <!-- Se generan las cards  -->
+    <mat-grid-tile [colspan]="2" [rowspan]="1">
+      <button class="btn btn-block btn-light">Create new movie</button>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let card of movies;index as i" [colspan]="(cards |async)?1:2" [rowspan]="(cards |async)?3:1">
       <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
+          <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <div class="row row-cols-md-3 text-light">
+            <!-- firts column  -->
+            <div class="col">
+              <img matCardImageLarge [src]="card.imagen" [alt]="card.nombre">
+            </div>
+            <!-- secound column  -->
+            <div class="col">
+              <div class="row">
+                <div class="col-12">
+                  <h6>Titulo</h6>
+                </div>
+                <div class="item-table col-12"><span>{{card.nombre| titlecase}}</span></div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h6>Estado</h6>
+                </div>
+                <div class="item-table col-12"><span>{{card.cartelera?'En cartelera':'Estreno'}}</span></div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h6>Likes</h6>
+                </div>
+                <div class="item-table col-12"><span>{{card.likes}}</span></div>
+              </div>
+            </div>
+            <!-- third column  -->
+            <div class="col">
+              <div class="row">
+                <div class="col-12">
+                  <h6>Idioma</h6>
+                </div>
+                <div class="item-table col-12"><span>{{card.idioma|titlecase}}</span></div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h6>Likes</h6>
+                </div>
+                <div class="item-table col-12"><span>{{!card.trailer?'Disponible':'No disponible'}}</span></div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h6>description</h6>
+                </div>
+                <div class="item-table col-12"><span>
+                    <p>{{card.descripcion.length>60?card.descripcion.substr(0, 60)+'...':card.descripcion}}</p>
+                  </span></div>
+              </div>
+            </div>
+          </div>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item [routerLink]="'/dashboard/form-movies/update/'+i">Update</button>
+            <button mat-menu-item [id]="">Remove</button>
+          </mat-menu>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
+    <!-- finaliza el bucle de tarjetas -->
+
   </mat-grid-list>
 </div>

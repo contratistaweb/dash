@@ -1,18 +1,18 @@
-:host {
-  background-color:rgba(0, 0, 0, 0.0);
+:host{
   display: block;
 }
-
 .grid-container {
   margin: 20px;
 }
 
 .dashboard-card {
   position: absolute;
-  top: 15px;
+  top: 5px;
   left: 15px;
   right: 15px;
-  bottom: 15px;
+  bottom: 5px;
+  height: auto;
+  background-color: rgba($color: #ffffff, $alpha: 0.1);
 }
 
 .more-button {
@@ -22,5 +22,17 @@
 }
 
 .dashboard-card-content {
-  text-align: center;
+  text-align: justify;
+}
+h6 {
+  color: rgba($color: #000033, $alpha: 0.7);
+  font-weight: 700;
+  line-height: normal;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+.item-table {
+  padding-top: 0;
+  text-shadow: 1px 2px #000033;
 }

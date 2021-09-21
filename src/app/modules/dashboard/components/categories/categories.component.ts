@@ -4,15 +4,16 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { FirebaseService } from 'src/app/modules/core/services/firebase.service';
 import { Movies } from 'src/app/modules/core/interfaces/movies';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class CategoriesComponent implements OnInit {
+
   getMovies: Observable<Movies[]> = new Observable();
-  getMovie: Observable<Movies> = new Observable();
   movies: Movies[] = [];
 
   cards: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -21,15 +22,16 @@ export class DashboardComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private fireServ: FirebaseService
-  ) { }
+  constructor(private breakpointObserver: BreakpointObserver, private fireServ: FirebaseService) { }
 
   ngOnInit(): void {
     this.getMovies = this.fireServ.getMovies();
     this.getMovies.subscribe(mvs => this.movies = mvs, mvsErr => console.log('mvsErr :>> ', mvsErr));
+  }
 
+  onSubmit(f: NgForm) {
+    console.log(f.value);  // { first: '', last: '' }
+    console.log(f.valid);  // false
   }
 
 }

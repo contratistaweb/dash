@@ -1,15 +1,21 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-     <mat-toolbar><!--Menu--></mat-toolbar> 
+    <mat-toolbar>Cinepelis</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">
-        <mat-icon mx-2>image</mat-icon>Images
+      <a mat-list-item routerLink="./" routerLinkActive="active" class="text-light" style="cursor: pointer">
+        <mat-icon mx-2>dashboard</mat-icon>Dashboard
       </a>
-      <a mat-list-item href="#">
-        <mat-icon mx-2>perm_media</mat-icon>Collections
+      <a mat-list-item routerLink="./premieres" routerLinkActive="active" class="text-light" style="cursor: pointer">
+        <mat-icon mx-2>movie_filter</mat-icon>Premieres
       </a>
-      <a mat-list-item routerLink="/access/login">
+      <a mat-list-item routerLink="./galery" routerLinkActive="active" class="text-light" style="cursor: pointer">
+        <mat-icon mx-2>image</mat-icon>Galery
+      </a>
+      <a mat-list-item routerLink="./categories" routerLinkActive="active" class="text-light" style="cursor: pointer">
+        <mat-icon mx-2>perm_media</mat-icon>Categories
+      </a>
+      <a (click)="singOut()" mat-list-item class="text-light" style="cursor: pointer">
         <mat-icon mx-2>logout</mat-icon>Sing out
       </a>
     </mat-nav-list>
@@ -20,9 +26,65 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>dash</span>
+      <div class="row row-cols-8 col">
+        <!-- icono x  -->
+        <div class="row col">
+          <div class="col-4">
+            <mat-icon class="material-icons md-48 col-6" color="primary">movie_filter</mat-icon>
+          </div>
+          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
+        </div>
+
+        <!-- icono x  -->
+        <div class="row col">
+          <div class="col-4">
+            <mat-icon class="material-icons md-48 col-6" color="primary">email</mat-icon>
+          </div>
+          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
+        </div>
+
+        <!-- icono x  -->
+        <div class="row col">
+          <div class="col-4">
+            <mat-icon class="material-icons md-48 col-6" color="primary">insert_comment</mat-icon>
+          </div>
+          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
+        </div>
+
+        <!-- icono x  -->
+        <div class="row col">
+          <div class="col-4">
+            <mat-icon class="material-icons md-48 col-6" color="primary">forward_to_inbox</mat-icon>
+          </div>
+          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
+        </div>
+
+        <!-- icono x  -->
+        <div class="row col">
+          <div class="col-4">
+            <mat-icon class="material-icons md-48 col-6" color="primary">phone</mat-icon>
+          </div>
+          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
+        </div>
+        <!-- icono x  -->
+        <div class="row col">
+          <div class="col-4">
+            <mat-icon class="material-icons md-48 col-6" color="primary">markunread_mailbox</mat-icon>
+          </div>
+          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
+        </div>
+        <!-- icono x  -->
+        <div class="row col">
+          <div class="col-4">
+            <mat-icon class="material-icons md-48 col-6" color="primary">settings</mat-icon>
+          </div>
+          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
+        </div>
+
+
+      </div>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <app-dashboard></app-dashboard>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

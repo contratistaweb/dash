@@ -11,18 +11,25 @@ export class UnplashService {
   url = environment.unplash.url;
   constructor(private http: HttpClient) { }
 
-  getImages(){
+  getImages() {
     const params = new HttpParams()
-    .set('client_id', this.ak)
-    .set('query', 'tech')
-    .set('lang', 'en')
-    .set('orientation', 'landscape');
-    return this.http.get(`${this.url}/search/photos`, {params})
+      .set('client_id', this.ak)
+      .set('query', 'movie')
+      .set('lang', 'en')
+      .set('orientation', 'landscape');
+    return this.http.get(`${this.url}/search/photos`, { params })
   }
-  
-  getCollections(){
+
+  getCollections() {
     const params = new HttpParams()
-    .set('client_id', this.ak)
-    return this.http.get(`${this.url}/collections`, {params})
+      .set('client_id', this.ak)
+    return this.http.get(`${this.url}/collections`, { params })
+  }
+
+  getStaticsPhoto(id:string) {
+    const params = new HttpParams()
+      .set('client_id', this.ak);
+
+    return this.http.get(`${this.url}/photos/${id}/statistics`, { params });
   }
 }

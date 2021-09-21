@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -15,6 +15,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { CustomService } from './services/custom.service';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -36,13 +39,14 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     LayoutModule,
     MatSidenavModule,
-    MatSidenavModule,
-    MatListModule
-
+    MatListModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [
     FirebaseService,
-    UnplashService
+    UnplashService,
+    CustomService
   ],
   exports: [
     NavbarComponent,
@@ -59,7 +63,9 @@ import { MatListModule } from '@angular/material/list';
     LayoutModule,
     MatSidenavModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule,
+    FormsModule
   ]
 })
 export class CoreModule { }
