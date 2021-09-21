@@ -6,6 +6,7 @@ import { FirebaseService } from 'src/app/modules/core/services/firebase.service'
 import { Movies } from 'src/app/modules/core/interfaces/movies';
 import { ToastrService } from 'ngx-toastr';
 import { push } from '@firebase/database';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,7 +28,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     private fireService: FirebaseService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
   // convertir esto para que vote un array  y no un obj
   ngOnInit(): void {
@@ -52,6 +54,12 @@ export class DashboardComponent implements OnInit {
       console.error(error);
     });
   }
+
+  updateMovie(i: number) {
+    console.log('this.ids[i] :>> ', this.ids[i]);
+    this.router.navigate([`/dashboard/form-movies/update/${this.ids[i]}`]);
+  }
+
 
   deleteMovie(i: number) {
     console.log('this.ids[i] :>> ', this.ids[i]);

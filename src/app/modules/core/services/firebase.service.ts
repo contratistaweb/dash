@@ -51,7 +51,10 @@ export class FirebaseService {
       const updates: any = {};
       updates['/Peliculas/' + newPostKey] = movie;
       this.toastr.success('Movie created correctly!', 'Success!');
-      return update(ref(db), updates);
+      setTimeout(() => {
+        this.router.navigate(['/dashboard/'])
+        return update(ref(db), updates);
+      }, 2000);
     })
 
   }

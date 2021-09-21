@@ -59,7 +59,7 @@
             </div>
           </div>
           <mat-menu #menu="matMenu" xPosition="before">
-            <button mat-menu-item [routerLink]="'/dashboard/form-movies/update/'+i">Update</button>
+            <button mat-menu-item (click)="updateMovie(i)">Update</button>
             <button mat-menu-item (click)="deleteMovie(i)">Remove</button>
           </mat-menu>
         </mat-card-content>
