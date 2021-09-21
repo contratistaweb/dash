@@ -3,20 +3,23 @@
 <div class="row d-flex justify-content-around">
     <ng-container *ngFor="let movie of movies">
         <mat-card class="example-card col-3 mx-1 my-2">
-            <img mat-card-image [src]="movie.imagen" [alt]="movie.nombre">
-            <mat-card-header>
+            <img mat-card-image [src]="movie.imagen" [alt]="movie.nombre" style="max-height: 300px;">
+            <mat-card-header class="d-flex">
                 <mat-card-title>{{movie.nombre |titlecase}}</mat-card-title>
                 <mat-card-subtitle>likes: {{movie.likes}}</mat-card-subtitle>
             </mat-card-header>
-            <mat-card-actions>
-                <div class="d-flex justify-content-between">
-                    <button mat-button>LIKE</button>
-                    <button mat-button>SHARE</button>
-                </div>
+            <mat-card-content class="">
+                <p >{{movie.descripcion.substr(0, 99)}}</p>
+            </mat-card-content>
+            <mat-card-actions class="row row-cols-md-2 align-bottom mb-0 align-self-stretch">
+                    <button mat-raised-button color="primary" class="mx-auto my-1">LIKE</button>
+                    <button mat-raised-button color="accent" class="mx-auto my-1">SHARE</button>
             </mat-card-actions>
         </mat-card>
     </ng-container>
 </div>
+
+
 
 
 
