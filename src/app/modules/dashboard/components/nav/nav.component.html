@@ -32,62 +32,62 @@
       </button>
       <div class="row row-cols-8 col">
         <!-- icono x  -->
-        <div class="col row row-cols-3">
+        <div class="col row row-cols-3" *ngFor="let item of iconsNav">
           <div class="col">
             <span>
-              <mat-icon class="material-icons md-48 col-6" color="primary">movie_filter</mat-icon>
+              <mat-icon class="material-icons md-48 col-6" color="primary">{{item.icon}}</mat-icon>
             </span>
           </div>
           <div class="col">
-            <span class="display-5">{{enCartelera}} </span>
+            <span class="display-5">{{item.nroNot}} </span>
           </div>
         </div>
 
         <!-- icono x  -->
-        <div class="row col">
+        <!-- <div class="row col">
           <div class="col-4">
             <mat-icon class="material-icons md-48 col-6" color="primary">email</mat-icon>
           </div>
-          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
-        </div>
+          <div class="col-4"><span class="display-5">{{nroRnd}} </span></div>
+        </div> -->
 
         <!-- icono x  -->
-        <div class="row col">
+        <!-- <div class="row col">
           <div class="col-4">
             <mat-icon class="material-icons md-48 col-6" color="primary">insert_comment</mat-icon>
           </div>
-          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
-        </div>
+          <div class="col-4"><span class="display-5">{{nroRnd}} </span></div>
+        </div> -->
 
         <!-- icono x  -->
-        <div class="row col">
+        <!-- <div class="row col">
           <div class="col-4">
             <mat-icon class="material-icons md-48 col-6" color="primary">forward_to_inbox</mat-icon>
           </div>
-          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
-        </div>
+          <div class="col-4"><span class="display-5">{{nroRnd}} </span></div>
+        </div> -->
 
         <!-- icono x  -->
-        <div class="row col">
+        <!-- <div class="row col">
           <div class="col-4">
             <mat-icon class="material-icons md-48 col-6" color="primary">phone</mat-icon>
           </div>
-          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
-        </div>
+          <div class="col-4"><span class="display-5">{{nroRnd}} </span></div>
+        </div> -->
         <!-- icono x  -->
-        <div class="row col">
+        <!-- <div class="row col">
           <div class="col-4">
             <mat-icon class="material-icons md-48 col-6" color="primary">markunread_mailbox</mat-icon>
           </div>
-          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
-        </div>
+          <div class="col-4"><span class="display-5">{{nroRnd}} </span></div>
+        </div> -->
         <!-- icono x  -->
-        <div class="row col">
+        <!-- <div class="row col">
           <div class="col-4">
             <mat-icon class="material-icons md-48 col-6" color="primary">settings</mat-icon>
           </div>
-          <div class="col-4"><span class="display-5">{{enCartelera}} </span></div>
-        </div>
+          <div class="col-4"><span class="display-5">{{nroRnd}} </span></div>
+        </div> -->
 
 
       </div>

@@ -16,6 +16,9 @@ export class NavComponent implements OnInit {
   getMovies: Observable<Movies[]> = new Observable();
   movies: Movies[] = [];
   enCartelera: number = 0;
+  nroRnd: number = 0;
+  iconsNav: any[] = []
+
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -30,6 +33,9 @@ export class NavComponent implements OnInit {
       if (snapshot.exists()) {
         console.log('snapshot.val()',);
         this.movies = Object.values(snapshot.val());
+        this.enCartelera = this.movies.length
+        this.navbarNotificatios();
+
       } else {
         console.log("No data available");
       }
@@ -38,7 +44,20 @@ export class NavComponent implements OnInit {
     });
   }
 
+
   singOut() {
     this.auth.singOutUser();
+  }
+
+  navbarNotificatios() {
+
+    this.iconsNav.push({ icon: 'movie_filter', nroNot: this.movies.length });
+    this.iconsNav.push({ icon: 'email', nroNot: parseInt((Math.random() * 100).toString()) });
+    this.iconsNav.push({ icon: 'insert_comment', nroNot: parseInt((Math.random() * 100).toString()) });
+    this.iconsNav.push({ icon: 'forward_to_inbox', nroNot: parseInt((Math.random() * 100).toString()) });
+    this.iconsNav.push({ icon: 'phone', nroNot: parseInt((Math.random() * 100).toString()) });
+    this.iconsNav.push({ icon: 'markunread_mailbox', nroNot: parseInt((Math.random() * 100).toString()) });
+    this.iconsNav.push({ icon: 'settings', nroNot: parseInt((Math.random() * 100).toString()) });
+    this.iconsNav.push({ icon: 'person', nroNot: null });
   }
 }
