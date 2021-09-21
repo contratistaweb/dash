@@ -1,16 +1,14 @@
 <div class="grid-container">
   <mat-grid-list cols="2" rowHeight="200px">
     <!-- Se generan las cards  -->
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-      <button class="btn btn-block btn-light">Create new movie</button>
-    </mat-grid-tile>
-    <mat-grid-tile *ngFor="let card of movies;index as i" [colspan]="(cards |async)?1:2" [rowspan]="(cards |async)?3:1">
+    
+    <mat-grid-tile *ngFor="let card of movies; let i = index" [colspan]="(cards |async)?1:2" [rowspan]="(cards |async)?3:1">
       <mat-card class="dashboard-card">
         <mat-card-content class="dashboard-card-content">
           <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
             <mat-icon>more_vert</mat-icon>
           </button>
-          <div class="row row-cols-md-3 text-light">
+          <div class="row row-cols-md-3 text-dark">
             <!-- firts column  -->
             <div class="col">
               <img matCardImageLarge [src]="card.imagen" [alt]="card.nombre">
@@ -48,7 +46,7 @@
                 <div class="col-12">
                   <h6>Likes</h6>
                 </div>
-                <div class="item-table col-12"><span>{{!card.trailer?'Disponible':'No disponible'}}</span></div>
+                <div class="item-table col-12"><span>{{card.trailer!=''?'Disponible':'No disponible'}}</span></div>
               </div>
               <div class="row">
                 <div class="col-12">
@@ -62,7 +60,7 @@
           </div>
           <mat-menu #menu="matMenu" xPosition="before">
             <button mat-menu-item [routerLink]="'/dashboard/form-movies/update/'+i">Update</button>
-            <button mat-menu-item [id]="">Remove</button>
+            <button mat-menu-item (click)="deleteMovie(i)">Remove</button>
           </mat-menu>
         </mat-card-content>
       </mat-card>

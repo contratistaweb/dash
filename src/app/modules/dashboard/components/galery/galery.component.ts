@@ -12,7 +12,7 @@ import { FirebaseService } from 'src/app/modules/core/services/firebase.service'
 export class GaleryComponent implements OnInit {
 
   getPhotos: Observable<Object> = new Observable();
-  photos: any;
+  movies: any;
 
   cards: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -20,11 +20,19 @@ export class GaleryComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private fireServ: FirebaseService) { }
+  constructor(private breakpointObserver: BreakpointObserver, private fireService: FirebaseService) { }
 
   ngOnInit(): void {
-    this.getPhotos = this.fireServ.getMovies();
-    this.getPhotos.subscribe(mvs => this.photos = mvs, mvsErr => console.log('mvsErr :>> ', mvsErr));
+    this.fireService.getMovies().then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log('snapshot.val()',);
+        this.movies = Object.values(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
   }
 
 }

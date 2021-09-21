@@ -3,9 +3,8 @@
         <mat-card class="form-card mx-auto my-auto col col-md-4">
             <mat-card-content class="form-card-content" *ngIf="movie!=undefined">
 
-                <form #formMovie="ngForm" (ngSubmit)="onSubmit(formMovie)">
+                <form #formMovie="ngForm" (ngSubmit)="actionMov(formMovie)">
                     <!-- input hidden -->
-                    <!-- <input type="hidden" [(ngModel)]="indexMov" #indexMov="ngModel" id="indexMov" name="indexMov"> -->
                     <input type="hidden" [(ngModel)]="movie.likes" #likes="ngModel" id="likes" name="likes">
 
                     <!-- input  -->
@@ -52,7 +51,7 @@
                     </div>
 
                     <!-- input  -->
-                    <div class="form-group mb-3">
+                    <div class="form-group mb-3" *ngIf="action=='update'">
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text" id="addon-wrapping">
                                 <mat-icon class="material-icons md-24" color="primary" id="search-icon">search
@@ -65,14 +64,14 @@
                     </div>
 
                     <!-- input  -->
-                    <div class="form-group mb-3">
+                    <div class="form-group mb-3" *ngIf="action=='update'">
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text" id="addon-wrapping">
                                 <mat-icon class="material-icons md-24" color="primary" id="search-icon">search
                                 </mat-icon>
                             </span>
                             <input type="text" class="form-control" aria-describedby="search-icon" name="trailer"
-                                [(ngModel)]="movie.trailer" required #trailer="ngModel" id="trailer"
+                                [(ngModel)]="movie.trailer"  #trailer="ngModel" id="trailer"
                                 placeholder="movie url trailer">
                         </div>
                     </div>
@@ -85,7 +84,7 @@
                                 </mat-icon>
                             </span>
                             <textarea class="form-control" aria-describedby="search-icon" name="descripcion"
-                                [(ngModel)]="movie.descripcion" required #descripcion="ngModel" id="descripcion"
+                                [(ngModel)]="movie.descripcion" #descripcion="ngModel" id="descripcion"
                                 placeholder="movie description" rows="12"></textarea>
                         </div>
                     </div>

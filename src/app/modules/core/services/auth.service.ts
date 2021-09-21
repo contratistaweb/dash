@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { initializeApp } from '@firebase/app';
 import { getAuth, createUserWithEmailAndPassword, User, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
 
   isUserLogin: boolean = false;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private toastr: ToastrService) {
 
   }
 
@@ -27,6 +28,7 @@ export class AuthService {
         this.user = user;
         console.log('authUser() user :>> ', this.user);
         this.isUserLogin = false;
+        this.toastr.success('User create correctly!', 'Success!');
         this.router.navigate(['/access/login']);
 
         // ...
@@ -34,6 +36,7 @@ export class AuthService {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        this.toastr.error(error.message, 'Error!');
         console.log('error createUserWithEmailAndPassword():>> \n', error);
         // ..
       });
@@ -48,12 +51,14 @@ export class AuthService {
         console.log('authUser() user :>> ', this.user);
         this.isUserLogin = true;
         console.log('this.isUserLogin :>> ', this.isUserLogin);
+        this.toastr.success('Welcome!', 'Success!');
         this.router.navigate(['/dashboard/']);
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        this.toastr.error(error.message, 'Error!');
         console.log('error signInWithEmailAndPassword() :>> \n', error);
       });
   }
@@ -64,10 +69,12 @@ export class AuthService {
       // Sign-out successful.
       this.isUserLogin = false;
       console.log('this.isUserLogin :>> ', this.isUserLogin);
+      this.toastr.success('come back soon!', 'Success!');
       this.router.navigate(['/access/login']);
     }).catch((error) => {
       // An error happened.
       console.log('error signOut() :>> \n', error);
+      this.toastr.error(error.message, 'Error!');
     });
   }
 

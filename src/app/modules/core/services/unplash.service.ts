@@ -11,12 +11,12 @@ export class UnplashService {
   url = environment.unplash.url;
   constructor(private http: HttpClient) { }
 
-  getImages() {
+  getImages(orientation?:string) {
     const params = new HttpParams()
       .set('client_id', this.ak)
       .set('query', 'movie')
       .set('lang', 'en')
-      .set('orientation', 'landscape');
+      .set('orientation', `${!orientation?'landscape':orientation}`);
     return this.http.get(`${this.url}/search/photos`, { params })
   }
 

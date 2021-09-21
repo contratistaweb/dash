@@ -20,29 +20,39 @@ export class FormMoviesComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.action = params['action'] || undefined;
-      this.indexMov = params['indexMov'];
-      this.getOneMovie = this.fireServ.getOneMovie(this.indexMov);
-      this.getOneMovie.subscribe(movie => this.movie = movie, movError => console.log('movError :>> ', movError));
+      this.action = params['action'] || null;
+      this.indexMov = params['indexMov']||null;
+      if (this.action == 'update') {
+        this.getOneMovie = this.fireServ.getOneMovie(this.indexMov);
+        this.getOneMovie.subscribe(movie => this.movie = movie, movError => console.log('movError :>> ', movError));
+      }else{
+        this.movie = {
+          nombre: '',
+          cartelera: false,
+          descripcion: '',
+          likes: 0,
+          idioma: '',
+          imagen: '',
+          trailer: ''
+        }
+      }
     });
   }
 
-  onSubmit(f: NgForm) {
-
-    const mov:Movies =  {
-      cartelera: f.value.cartelera,
-      descripcion: f.value.descripcion,
-      idioma: f.value.idioma,
-      imagen: f.value.imagen,
-      likes: f.value.likes,
-      nombre: f.value.nombre,
-      trailer: f.value.trailer
+  actionMov(f: NgForm) {
+    if (this.action == 'update') {
+      this.updateMovie(f);
+    } else {
+      this.createMovie(f);
     }
-    
-    this.fireServ.editMovie(this.indexMov, mov).subscribe(res => console.log('editMovie() res :>> ', res));
+  }
 
-    console.log(mov);  // { first: '', last: '' }
-    //console.log(f.valid);  // false
+  updateMovie(f: NgForm) {
+    this.fireServ.updateMovieData(this.indexMov, f);
+  }
+
+  createMovie(f: NgForm) {
+    this.fireServ.createNewMovie(f);
   }
 
 }

@@ -18,6 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { CustomService } from './services/custom.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,12 @@ import { FormsModule } from '@angular/forms';
     MatSidenavModule,
     MatListModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    })
   ],
   providers: [
     FirebaseService,

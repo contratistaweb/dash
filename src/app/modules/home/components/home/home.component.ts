@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movies } from 'src/app/modules/core/interfaces/movies';
 import { FirebaseService } from 'src/app/modules/core/services/firebase.service';
@@ -8,9 +8,10 @@ import { FirebaseService } from 'src/app/modules/core/services/firebase.service'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit {
 
-  getMovies: Observable<Movies[]> = new Observable();
+  // getMovies: Observable<Movies[]> = new Observable();
+  getMovies!: { subscribe: () => { (): any; new(): any; unsubscribe: { (): void; new(): any; }; }; };
   movies: Movies[] = [];
 
   constructor(
@@ -19,14 +20,15 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.getMovies = this.fireService.getMovies();
-    this.getMovies.subscribe(movs => {
-      this.movies = movs
-      console.log('Movies: \n', this.movies);
-    }, movsErr => console.log('movErr :>> ', movsErr));
-  }
-
-  ngOnDestroy(): void {
-    this.getMovies.subscribe().unsubscribe();
+    this.fireService.getMovies().then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log('snapshot.val()',);
+        this.movies = Object.values(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
   }
 }

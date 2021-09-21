@@ -4,6 +4,8 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { FirebaseService } from 'src/app/modules/core/services/firebase.service';
 import { Movies } from 'src/app/modules/core/interfaces/movies';
+import { ToastrService } from 'ngx-toastr';
+import { push } from '@firebase/database';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +15,8 @@ import { Movies } from 'src/app/modules/core/interfaces/movies';
 export class DashboardComponent implements OnInit {
   getMovies: Observable<Movies[]> = new Observable();
   getMovie: Observable<Movies> = new Observable();
-  movies: Movies[] = [];
+  movies: any[] = [];
+  ids: any[] = [];
 
   cards: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -23,13 +26,39 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private fireServ: FirebaseService
+    private fireService: FirebaseService,
+    private toastr: ToastrService
   ) { }
-
+  // convertir esto para que vote un array  y no un obj
   ngOnInit(): void {
-    this.getMovies = this.fireServ.getMovies();
-    this.getMovies.subscribe(mvs => this.movies = mvs, mvsErr => console.log('mvsErr :>> ', mvsErr));
 
+    this.getInit();
+  }
+
+  getInit() {
+    this.fireService.getMovies().then((snapshot) => {
+      if (snapshot.exists()) {
+        // this.movies = snapshot.toJSON();
+        Object.keys(snapshot.val()).forEach(el => {
+          this.movies.push(snapshot.val()[el]);
+          this.ids.push(el);
+        });
+        console.log('this.movies', this.movies);
+
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
+
+  deleteMovie(i: number) {
+    console.log('this.ids[i] :>> ', this.ids[i]);
+    this.fireService.deleteMovie(this.ids[i]).then(() => {
+      this.toastr.success('Movie Deleted correctly!', 'Success!');
+      this.getInit()
+    });
   }
 
 }

@@ -21,11 +21,19 @@ export class PremieresComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private fireServ: FirebaseService) { }
+  constructor(private breakpointObserver: BreakpointObserver, private fireService: FirebaseService) { }
 
   ngOnInit(): void {
-    this.getMovies = this.fireServ.getMovies();
-    this.getMovies.subscribe(mvs => this.movies = mvs.filter(el => el.cartelera==false), mvsErr => console.log('mvsErr :>> ', mvsErr));
+    this.fireService.getMovies().then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log('snapshot.val()',);
+        this.movies = Object.values(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
   }
 
 }

@@ -1,3 +1,5 @@
+$icon-color: #6746c3;
+
 mat-sidenav-content {
   display: block;
   background-color: #12005e;
@@ -28,15 +30,19 @@ mat-toolbar {
 
 .material-icons.md-18 {
   font-size: 18px;
+  color: $icon-color;
 }
 .material-icons.md-24 {
   font-size: 24px;
+  color: $icon-color;
 }
 .material-icons.md-36 {
   font-size: 36px;
+  color: $icon-color;
 }
 .material-icons.md-48 {
   font-size: 48px;
+  color: $icon-color;
 }
 
 .active {
